@@ -20,7 +20,7 @@ listEl.style.display = 'flex'
 listEl.style.gap = '10px'
 
 const makeCardGallery = ({ url, alt }) => `<li>
-  <img src = "${url}", alt = "${alt}", width = '450', height = '300'>
+  <img src = "${url}", alt = "${alt}", width = '350', height = '250'>
 </li>`
 
 const markup = images.map((el) => makeCardGallery(el)).join('');
