@@ -8,25 +8,32 @@ const collectionEl = document.querySelector('#controls')
 const btnCreateEl = document.querySelector('button[data-create]')
 const btnDestroyEl = document.querySelector('button[data-destroy]')
 const boxesEl = document.querySelector('#boxes')
+const inputEl = document.querySelector('input[type=number]')
 
-btnDestroyEl.addEventListener('click', () => (boxesEl.innerHTML = ""))
+btnDestroyEl.addEventListener('click', resetInput)
 btnCreateEl.addEventListener('click', createBoxes)
 
+function resetInput() {
+  boxesEl.innerHTML = "";
+  inputEl.value = "";
+}
 
 function createBoxes() {
   let amount = collectionEl.firstElementChild.value;
-  let defaultSize = 30;
+  let boxSize = 30;
+  const boxesArr = [];
 
   for (let i = 0; i < amount; i+=1) {
-    let boxSize = i * 10 + defaultSize;
-   
-    const markup = `<div class="box" 
-    style="background:${getRandomHexColor()}"; 
-    width:${boxSize}px;
-    height; ${boxSize}px></div>`;
+    const createdBox = document.createElement('div');
+    createdBox.style.height = boxSize + 'px';
+    createdBox.style.width = boxSize + 'px';
+    createdBox.style.backgroundColor = getRandomHexColor();
+    boxSize += 10;
+    boxesArr.push(createdBox)
 
-    boxesEl.insertAdjacentHTML('afterbegin', markup)
   }
+
+  boxesEl.append(...boxesArr)
   
 }
   
